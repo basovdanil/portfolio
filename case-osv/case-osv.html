@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Проверка ОСВ: 16 счетов, 5 дефектов</title>
+<style>
+:root{--ink:#0F2B46;--accent:#1F6FEB;--muted:#5B7186;--bad:#B3261E;--line:#D8E1EA;--soft:#F7F9FC}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.6 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:48px 28px 64px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-size:34px;line-height:1.2;margin:10px 0 14px;font-weight:700;letter-spacing:-.01em}
+.lead{font-size:17px;color:var(--muted);margin:0 0 18px;max-width:74ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.chip.n{background:var(--soft);color:var(--muted);border:1px solid var(--line)}
+.chip.ok{background:#E8F5EC;color:#0F7B3F}
+.chip.bad{background:#FBE9E7;color:var(--bad)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 44px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kpi-l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.kpi-v{font-size:24px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:20px;margin:44px 0 6px;font-weight:700}
+.sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+ol.steps li{counter-increment:s;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:14px 16px}
+ol.steps li::before{content:counter(s);display:block;font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.step-t{font-weight:700;margin-bottom:4px}
+.step-d{font-size:14px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:0}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+   font-weight:600;padding:8px 10px;border-bottom:2px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+td.n{text-align:right}
+td.t{font-weight:600}
+td.why{color:var(--muted);font-size:13px}
+.note{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:16px}
+.note p{margin:0 0 8px;font-size:14px;color:var(--muted)}
+.note p:last-child{margin:0}
+ul.files{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+ul.files li{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+@media (max-width:760px){.kpis{grid-template-columns:1fr 1fr}ol.steps{grid-template-columns:1fr}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Кейс · проверка учётных данных</div>
+  <h1>ОСВ: пять дефектов на шестнадцати счетах</h1>
+  <p class="lead">Синтетическая оборотно-сальдовая ведомость за <span>01.10.2026 — 31.12.2026</span>. Дефекты заложены в данные,
+  а не вписаны в отчёт: их нашёл отдельный скрипт, который не знал, что ищет. Книга Excel показывает то же самое
+  формулами и подсвечивает проблемные строки.</p>
+  <div class="chips">
+    <span class="chip n">16 счетов</span>
+    <span class="chip n">IV квартал 2026</span>
+    <span class="chip n">данные вымышлены</span>
+  </div>
+
+  <div class="kpis"><div class="kpi"><div class="kpi-l">Счетов в ведомости</div><div class="kpi-v">16</div></div><div class="kpi"><div class="kpi-l">Оборот по дебету</div><div class="kpi-v">1 060 000 ₽</div></div><div class="kpi"><div class="kpi-l">Разрыв итогов сальдо</div><div class="kpi-v">42 000 ₽</div></div><div class="kpi"><div class="kpi-l">Найдено дефектов</div><div class="kpi-v">5 из 5</div></div></div>
+
+  <h2>Как это сделано</h2>
+  <p class="sub">Четыре шага, каждый проверяем отдельно.</p>
+  <ol class="steps"><li><div class="step-t">Данные</div><div class="step-d">gen_osv.py строит сбалансированную ведомость по 16 счетам и портит её ровно в пяти местах. Каждое «порча» описана в data/meta.json — что и на какую сумму испорчено.</div></li><li><div class="step-t">Независимая проверка</div><div class="step-d">check_osv.py читает только CSV и meta.json, пересчитывает сальдо по формуле и ищет дефекты по правилам учета, а не по списку ожиданий.</div></li><li><div class="step-t">Сверка</div><div class="step-d">Найденное сравнивается с заложенным. Сошлось — код 0, разошлось — код 4 и вывод обоих наборов.</div></li><li><div class="step-t">Книга</div><div class="step-d">osv.xlsx: ведомость с колонкой «Проверка» (это формула), лист «Проверки» с фактом, ожиданием и допуском, условное форматирование статусов.</div></li></ol>
+
+  <h2>Что нашлось</h2>
+  <p class="sub">Порядок — как в выводе проверки. Суммы в рублях.</p>
+  <table>
+    <thead><tr><th>Дефект</th><th>Счёт</th><th style="text-align:right">Сумма</th><th>Что это значит</th></tr></thead>
+    <tbody><tr><td class="t">Кредитовое сальдо на активном счёте</td><td class="n">41</td><td class="n num">80 000</td><td class="why">Товаров больше, чем может быть: либо не оприходована поставка, либо списано лишнее.</td></tr><tr><td class="t">Строка не сходится арифметически</td><td class="n">62</td><td class="n num">30 000</td><td class="why">Сальдо на конец ≠ сальдо на начало + оборот. Такую строку не примет ни один свод.</td></tr><tr><td class="t">Отрицательный оборот по дебету</td><td class="n">76</td><td class="n num">−12 000</td><td class="why">Сторно без парного движения — типичный след ручной правки в закрытом периоде.</td></tr><tr><td class="t">Итоги оборотов: Дт ≠ Кт</td><td class="n">—</td><td class="n num">12 000</td><td class="why">Ведомость не сбалансирована, значит дальше не сойдётся ни один отчёт по ней.</td></tr><tr><td class="t">Итоги конечного сальдо: Дт ≠ Кт</td><td class="n">—</td><td class="n num">42 000</td><td class="why">Разрыв больше, чем в строке 62: дефект по счёту 76 тянет за собой весь итог.</td></tr></tbody>
+  </table>
+
+  <h2>Что сошлось и что нет</h2>
+  <p class="sub">Семь утверждений, которые проверяются по ведомости целиком.</p>
+  <table>
+    <thead><tr><th>Проверка</th><th style="text-align:right">Факт</th><th style="text-align:right">Статус</th></tr></thead>
+    <tbody><tr><td class="t">Сальдо на начало: Дт − Кт</td><td class="n num">0 ₽</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Обороты: Дт − Кт</td><td class="n num">12 000 ₽</td><td class="n"><span class="chip bad">ошибка</span></td></tr><tr><td class="t">Сальдо на конец: Дт − Кт</td><td class="n num">42 000 ₽</td><td class="n"><span class="chip bad">ошибка</span></td></tr><tr><td class="t">Строк с арифметическим расхождением</td><td class="n num">1</td><td class="n"><span class="chip bad">ошибка</span></td></tr><tr><td class="t">Кредитовое сальдо на активных счетах</td><td class="n num">80 000 ₽</td><td class="n"><span class="chip bad">ошибка</span></td></tr><tr><td class="t">Дебетовое сальдо на пассивных счетах</td><td class="n num">0 ₽</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Отрицательных оборотов</td><td class="n num">1</td><td class="n"><span class="chip bad">ошибка</span></td></tr><tr><td class="t">Совпадение с заложенным набором</td><td class="n num">5 из 5</td><td class="n"><span class="chip ok">норма</span></td></tr></tbody>
+  </table>
+
+  <h2>Границы</h2>
+  <div class="note">
+    <p>Книга собрана без Excel: формулы записаны корректно, но ни разу не пересчитаны движком. Числа на этой
+    странице сверены независимым скриптом с исходным CSV, а не списаны из книги.</p>
+    <p>Данные вымышлены целиком: компания, счета, суммы. Ни одна из них не взята из настоящей базы и не может быть
+    сверена с реальным учетом.</p>
+    <p>Проверка ищет арифметику и красное сальдо, но не знает правил конкретного участка: неверная корреспонденция
+    счетов сойдётся по сальдо и останется незамеченной.</p>
+  </div>
+
+  <h2>Файлы кейса</h2>
+  <ul class="files"><li><code>gen_osv.py</code></li><li><code>check_osv.py</code></li><li><code>data/osv.csv</code></li><li><code>data/meta.json</code></li><li><code>data/checks.json</code></li><li><code>osv.build.cjs</code></li><li><code>osv.xlsx</code></li></ul>
+
+  <footer>Кейс собран на синтетических данных. Персональных данных нет.</footer>
+</div>
+</body>
+</html>

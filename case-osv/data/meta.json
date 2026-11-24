@@ -1,0 +1,33 @@
+{
+  "company": "ООО «Северный склад» (данные вымышлены)",
+  "period": "01.10.2026 — 31.12.2026",
+  "rows": 16,
+  "generated_at": "2026-11-24T06:58:14+03:00",
+  "expected": [
+    {
+      "code": "row_mismatch",
+      "account": "62",
+      "value": 30000
+    },
+    {
+      "code": "totals_close",
+      "account": "",
+      "value": 42000
+    },
+    {
+      "code": "totals_turn",
+      "account": "",
+      "value": 12000
+    },
+    {
+      "code": "red_balance",
+      "account": "41",
+      "value": 80000
+    },
+    {
+      "code": "negative_turnover",
+      "account": "76",
+      "value": -12000
+    }
+  ]
+}

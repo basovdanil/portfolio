@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вакансии из открытых данных без контактов</title>
+<style>
+:root{--ink:#0F2B46;--accent:#1F6FEB;--muted:#5B7186;--bad:#B3261E;--line:#D8E1EA;--soft:#F7F9FC}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.6 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:48px 28px 64px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-size:34px;line-height:1.2;margin:10px 0 14px;font-weight:700;letter-spacing:-.01em}
+.lead{font-size:17px;color:var(--muted);margin:0 0 18px;max-width:74ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.chip.n{background:var(--soft);color:var(--muted);border:1px solid var(--line)}
+.chip.ok{background:#E8F5EC;color:#0F7B3F}
+.chip.bad{background:#FBE9E7;color:var(--bad)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 44px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kpi-l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.kpi-v{font-size:24px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:20px;margin:44px 0 6px;font-weight:700}
+.sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+   font-weight:600;padding:8px 10px;border-bottom:2px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+td.n{text-align:right}
+td.t{font-weight:600}
+td.why{color:var(--muted);font-size:13px}
+.note{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:16px}
+.note p{margin:0 0 8px;font-size:14px;color:var(--muted)}
+.note p:last-child{margin:0}
+ul.files{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+ul.files li{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px}
+a{color:var(--accent)}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+@media (max-width:760px){.kpis{grid-template-columns:1fr 1fr}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Кейс · открытые данные</div>
+  <h1>Вакансии: 505 строк, ноль контактов</h1>
+  <p class="lead">Выборка из открытых данных о вакансиях. Белый список полей задан до первого запроса: контактные
+  колонки, почты и свободные тексты в таблицу не попадают, поэтому контактов в выгрузке нет
+  по устройству конвейера, а не по обещанию.</p>
+  <div class="chips">
+    <span class="chip n">источник: <a href="https://trudvsem.ru/opendata">trudvsem.ru/opendata</a></span>
+    <span class="chip n">публикации 2022-01-27 — 2026-11-23</span>
+    <span class="chip n">данные открыты для использования</span>
+  </div>
+
+  <div class="kpis"><div class="kpi"><div class="kpi-l">Вакансий в выборке</div><div class="kpi-v">505</div></div><div class="kpi"><div class="kpi-l">С указанной зарплатой</div><div class="kpi-v">501</div></div><div class="kpi"><div class="kpi-l">Медианная вилка</div><div class="kpi-v">69 000 ₽</div></div><div class="kpi"><div class="kpi-l">Регионов</div><div class="kpi-v">79</div></div></div>
+
+  <h2>Правило сбора</h2>
+  <p class="sub">Список полей закрыт: что не названо явно, то не сохраняется.</p>
+  <table>
+    <thead><tr><th style="width:90px">Решение</th><th>Поле</th><th>Зачем или почему нет</th></tr></thead>
+    <tbody><tr><td><span class="chip ok">берём</span></td><td class="t">id, регион, код ОКАТО</td><td class="why">номер вакансии и география</td></tr><tr><td><span class="chip ok">берём</span></td><td class="t">должность, специальность, занятость, график, стаж</td><td class="why">предмет поиска и условия</td></tr><tr><td><span class="chip ok">берём</span></td><td class="t">вилка зарплаты и валюта</td><td class="why">то, что анализируется</td></tr><tr><td><span class="chip ok">берём</span></td><td class="t">дата публикации и ссылка</td><td class="why">воспроизводимость</td></tr><tr><td><span class="chip bad">не берём</span></td><td class="t">имя контактного лица</td><td class="why">это персональные данные</td></tr><tr><td><span class="chip bad">не берём</span></td><td class="t">телефоны и почты</td><td class="why">контакты рекрутёров</td></tr><tr><td><span class="chip bad">не берём</span></td><td class="t">текст требований и обязанностей</td><td class="why">в свободном тексте чаще всего и лежат контакты</td></tr></tbody>
+  </table>
+
+  <h2>Регионы</h2>
+  <p class="sub">Топ-10 по числу вакансий. «Доля без зарплаты» — сколько карточек не указывают вилку.</p>
+  <table>
+    <thead><tr><th>Регион</th><th style="text-align:right">Вакансий</th><th style="text-align:right">Медиана, ₽</th>
+    <th style="text-align:right">Без зарплаты</th></tr></thead>
+    <tbody><tr><td class="t">Город Москва</td><td class="n num">77</td><td class="n num">80 000</td><td class="n num">2,6 %</td></tr><tr><td class="t">Город Санкт-Петербург</td><td class="n num">43</td><td class="n num">90 750</td><td class="n num">2,3 %</td></tr><tr><td class="t">Свердловская область</td><td class="n num">21</td><td class="n num">85 000</td><td class="n num">0,0 %</td></tr><tr><td class="t">Московская область</td><td class="n num">19</td><td class="n num">113 500</td><td class="n num">0,0 %</td></tr><tr><td class="t">Самарская область</td><td class="n num">19</td><td class="n num">65 000</td><td class="n num">0,0 %</td></tr><tr><td class="t">Краснодарский край</td><td class="n num">17</td><td class="n num">77 500</td><td class="n num">0,0 %</td></tr><tr><td class="t">Красноярский край</td><td class="n num">15</td><td class="n num">60 325</td><td class="n num">6,7 %</td></tr><tr><td class="t">Приморский край</td><td class="n num">14</td><td class="n num">65 000</td><td class="n num">0,0 %</td></tr><tr><td class="t">Иркутская область</td><td class="n num">11</td><td class="n num">65 000</td><td class="n num">0,0 %</td></tr><tr><td class="t">Республика Татарстан (Татарстан)</td><td class="n num">10</td><td class="n num">70 000</td><td class="n num">0,0 %</td></tr></tbody>
+  </table>
+
+  <h2>Специальности</h2>
+  <p class="sub">Категория из карточки вакансии, а не пересказ названия.</p>
+  <table>
+    <thead><tr><th>Специальность</th><th style="text-align:right">Вакансий</th><th style="text-align:right">Медиана, ₽</th></tr></thead>
+    <tbody><tr><td class="t">Информационные технологии, телекоммуникации, связь</td><td class="n num">110</td><td class="n num">80 000</td></tr><tr><td class="t">Бухгалтерия, налоги, управленческий учет</td><td class="n num">62</td><td class="n num">53 186</td></tr><tr><td class="t">Производство</td><td class="n num">57</td><td class="n num">80 000</td></tr><tr><td class="t">Продажи, закупки, снабжение, торговля</td><td class="n num">54</td><td class="n num">61 994</td></tr><tr><td class="t">Строительство, ремонт, стройматериалы, недвижимость</td><td class="n num">22</td><td class="n num">80 000</td></tr><tr><td class="t">Транспорт, автобизнес, логистика, склад, ВЭД</td><td class="n num">22</td><td class="n num">53 575</td></tr><tr><td class="t">Пищевая промышленность</td><td class="n num">15</td><td class="n num">69 800</td></tr><tr><td class="t">Государственная служба, некоммерческие организации</td><td class="n num">14</td><td class="n num">47 407</td></tr></tbody>
+  </table>
+
+  <h2>Как это проверено</h2>
+  <p class="sub">Отдельный скрипт, который не участвовал в сборе. При нарушении — выход с кодом 4.</p>
+  <table>
+    <thead><tr><th>Что проверялось</th><th style="text-align:right">Факт</th><th style="text-align:right">Статус</th></tr></thead>
+    <tbody><tr><td class="t">Строк и уникальных id</td><td class="n num">505 / 505</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Адресов почты в таблице</td><td class="n num">0</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Телефонов в текстовых полях</td><td class="n num">0</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Сумма по регионам равна числу строк</td><td class="n num">505 / 505</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Колонок с контактами</td><td class="n num">0</td><td class="n"><span class="chip ok">норма</span></td></tr></tbody>
+  </table>
+
+  <h2>Границы</h2>
+  <div class="note">
+    <p>Выборка неполная: это шесть запросов по сто строк, а не вся база. Самая крупная из тем дала
+    Город Москва — 77 вакансий, значит по стране картина шире и считать её «рынком труда» нельзя.</p>
+    <p>Медиана построена по указанным вилкам, а не по фактическим выплатам: 4 карточек вилку
+    не указывают вовсе, и они выпадают из расчёта.</p>
+    <p>Среди работодателей 23 — индивидуальные предприниматели: в названии может стоять фамилия. Поэтому
+    ни страница, ни файлы кейса не содержат списка работодателей: в таблице и книге этой колонки нет.</p>
+    <p>Книга собрана без Excel: формулы записаны, но не пересчитаны движком. Числа сверены скриптом с исходным CSV.</p>
+  </div>
+
+  <h2>Файлы кейса</h2>
+  <ul class="files"><li><code>fetch_jobs.py</code></li><li><code>stats_jobs.py</code></li><li><code>check_jobs.py</code></li><li><code>data/jobs.csv</code></li><li><code>data/by_region.csv</code></li><li><code>data/by_specialisation.csv</code></li><li><code>data/summary.json</code></li><li><code>data/checks.json</code></li><li><code>jobs.build.cjs</code></li><li><code>jobs.xlsx</code></li></ul>
+
+  <footer>Источник данных — <a href="https://trudvsem.ru/opendata">открытые данные trudvsem.ru</a>.
+  Контактные данные не собирались; названия работодателей в публикуемые файлы не входят.</footer>
+</div>
+</body>
+</html>

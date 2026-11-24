@@ -1,0 +1,12 @@
+{
+  "rows": 505,
+  "with_salary": 501,
+  "median_salary": 69000,
+  "mean_salary": 79833,
+  "regions": 79,
+  "specialisations": 32,
+  "top_region": "Город Москва",
+  "top_region_count": 77,
+  "date_min": "2022-01-27",
+  "date_max": "2026-11-23"
+}

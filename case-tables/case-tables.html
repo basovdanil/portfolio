@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Три ручные операции, которые делает скрипт</title>
+<style>
+:root{--ink:#0F2B46;--accent:#1F6FEB;--muted:#5B7186;--bad:#B3261E;--line:#D8E1EA;--soft:#F7F9FC}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.6 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:48px 28px 64px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-size:34px;line-height:1.2;margin:10px 0 14px;font-weight:700;letter-spacing:-.01em}
+.lead{font-size:17px;color:var(--muted);margin:0 0 18px;max-width:74ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.chip.n{background:var(--soft);color:var(--muted);border:1px solid var(--line)}
+.chip.ok{background:#E8F5EC;color:#0F7B3F}
+.chip.bad{background:#FBE9E7;color:var(--bad)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 44px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kpi-l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.kpi-v{font-size:24px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:20px;margin:44px 0 6px;font-weight:700}
+.sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:14px}
+ol.steps li{counter-increment:s;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:16px 18px}
+ol.steps li::before{content:counter(s);display:block;font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.step-t{font-weight:700;margin-bottom:4px}
+.step-d{font-size:14px;color:var(--muted);margin-bottom:10px}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px}
+.cmd{display:block;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-wrap:anywhere}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+   font-weight:600;padding:8px 10px;border-bottom:2px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+td.n{text-align:right}
+td.t{font-weight:600}
+.note{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:16px}
+.note p{margin:0 0 8px;font-size:14px;color:var(--muted)}
+.note p:last-child{margin:0}
+ul.files{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+ul.files li{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-size:13px}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+@media (max-width:760px){.kpis{grid-template-columns:1fr 1fr}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Кейс · автоматизация</div>
+  <h1>Три операции, которые раньше делались мышью</h1>
+  <p class="lead">Слить несколько выгрузок в один реестр, найти отличия между версиями таблицы, разложить файл
+  по папкам. Каждая операция — одна команда и отчёт в JSON; демо прогоняет все три на 72 строках
+  и сверяет результат с заранее посчитанным.</p>
+  <div class="chips">
+    <span class="chip n">вход: 3 файла, 72 строк</span>
+    <span class="chip n">только стандартная библиотека</span>
+    <span class="chip n">данные синтетические</span>
+  </div>
+
+  <div class="kpis"><div class="kpi"><div class="kpi-l">Операций автоматизировано</div><div class="kpi-v">3</div></div><div class="kpi"><div class="kpi-l">Строк на входе</div><div class="kpi-v">72</div></div><div class="kpi"><div class="kpi-l">Дублей отброшено</div><div class="kpi-v">12</div></div><div class="kpi"><div class="kpi-l">Сверок сошлось</div><div class="kpi-v">9 из 9</div></div></div>
+
+  <h2>Операции</h2>
+  <p class="sub">Команды, которые запускаются на входных файлах демо.</p>
+  <ol class="steps"><li><div class="step-t">Слить выгрузки</div><div class="step-d">Несколько файлов с одним реестром сводятся в один, повторы по ключу отбрасываются.</div><code class="cmd">tables.py merge --inputs reg-01.csv reg-02.csv --key id --out v1.csv</code></li><li><div class="step-t">Сравнить версии</div><div class="step-d">Две версии таблицы дают список добавленных, удалённых и изменённых строк.</div><code class="cmd">tables.py diff --old v1.csv --new v2.csv --key id --out diff.csv</code></li><li><div class="step-t">Разложить по папкам</div><div class="step-d">Один файл делится на части по значению колонки, рядом кладётся манифест.</div><code class="cmd">tables.py split --input v2.csv --by склад --outdir parts</code></li></ol>
+
+  <h2>Что показало демо</h2>
+  <p class="sub">Сравнение версий: +15 / −1 / ~1. Раскладка: 3 части,
+  59 строк — все строки на месте.</p>
+  <table>
+    <thead><tr><th>Сверка</th><th style="text-align:right">Получено</th><th style="text-align:right">Ожидалось</th>
+    <th style="text-align:right">Итог</th></tr></thead>
+    <tbody><tr><td class="t">Слияние двух файлов: строк на выходе</td><td class="n num">45</td><td class="n num">45</td><td class="n"><span class="chip ok">сошлось</span></td></tr><tr><td class="t">Слияние двух файлов: отброшено дублей</td><td class="n num">6</td><td class="n num">6</td><td class="n"><span class="chip ok">сошлось</span></td></tr><tr><td class="t">Слияние трёх файлов: строк на выходе</td><td class="n num">60</td><td class="n num">60</td><td class="n"><span class="chip ok">сошлось</span></td></tr><tr><td class="t">Слияние трёх файлов: отброшено дублей</td><td class="n num">12</td><td class="n num">12</td><td class="n"><span class="chip ok">сошлось</span></td></tr><tr><td class="t">Сравнение версий: добавлено</td><td class="n num">15</td><td class="n num">15</td><td class="n"><span class="chip ok">сошлось</span></td></tr><tr><td class="t">Сравнение версий: удалено</td><td class="n num">1</td><td class="n num">1</td><td class="n"><span class="chip ok">сошлось</span></td></tr><tr><td class="t">Сравнение версий: изменено</td><td class="n num">1</td><td class="n num">1</td><td class="n"><span class="chip ok">сошлось</span></td></tr><tr><td class="t">Раскладка: частей на выходе</td><td class="n num">3</td><td class="n num">3</td><td class="n"><span class="chip ok">сошлось</span></td></tr><tr><td class="t">Раскладка: строк во всех частях</td><td class="n num">59</td><td class="n num">59</td><td class="n"><span class="chip ok">сошлось</span></td></tr></tbody>
+  </table>
+
+  <h2>Границы</h2>
+  <div class="note">
+    <p>При слиянии побеждает первая встреченная строка: порядок файлов в команде задаёт приоритет. Если нужно
+    «последняя версия важнее», это другой режим, и его здесь нет.</p>
+    <p>Сравнение идёт по строкам как по тексту: «1000» и «1000.0» будут показаны как изменение, хотя число то же.
+    Перед сравнением выгрузки надо приводить к одному формату.</p>
+    <p>Демо работает на синтетике: вымышленные контрагенты и склады. Скрипт не проверялся на файлах из 1С —
+    там встречаются шапки в несколько строк и объединённые ячейки, а этого режима у него нет.</p>
+  </div>
+
+  <h2>Файлы кейса</h2>
+  <ul class="files"><li><code>tables.py</code></li><li><code>demo.py</code></li><li><code>work/in/reg-01.csv</code></li><li><code>work/in/reg-02.csv</code></li><li><code>work/in/reg-03.csv</code></li><li><code>work/out/v1.csv</code></li><li><code>work/out/v2.csv</code></li><li><code>work/out/diff.csv</code></li><li><code>work/out/parts/manifest.json</code></li><li><code>work/out/report.json</code></li></ul>
+
+  <footer>Кейс собран на синтетических данных. Персональных данных нет.</footer>
+</div>
+</body>
+</html>

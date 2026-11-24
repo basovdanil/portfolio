@@ -1,0 +1,81 @@
+{
+  "inputs": {
+    "files": 3,
+    "rows": 72
+  },
+  "merge_v1": {
+    "out": "work\\out\\v1.csv",
+    "files": 2,
+    "rows_in": 51,
+    "rows_out": 45,
+    "duplicates": 6
+  },
+  "merge_v2": {
+    "out": "work\\out\\v2-full.csv",
+    "files": 3,
+    "rows_in": 72,
+    "rows_out": 60,
+    "duplicates": 12
+  },
+  "diff": {
+    "out": "work\\out\\diff.csv",
+    "added": 15,
+    "removed": 1,
+    "changed": 1,
+    "rows_old": 45,
+    "rows_new": 59
+  },
+  "split": {
+    "parts": 3,
+    "rows": 59
+  },
+  "checks": {
+    "merge_v1_rows": {
+      "got": 45,
+      "want": 45,
+      "ok": true
+    },
+    "merge_v1_dups": {
+      "got": 6,
+      "want": 6,
+      "ok": true
+    },
+    "merge_v2_rows": {
+      "got": 60,
+      "want": 60,
+      "ok": true
+    },
+    "merge_v2_dups": {
+      "got": 12,
+      "want": 12,
+      "ok": true
+    },
+    "diff_added": {
+      "got": 15,
+      "want": 15,
+      "ok": true
+    },
+    "diff_removed": {
+      "got": 1,
+      "want": 1,
+      "ok": true
+    },
+    "diff_changed": {
+      "got": 1,
+      "want": 1,
+      "ok": true
+    },
+    "split_parts": {
+      "got": 3,
+      "want": 3,
+      "ok": true
+    },
+    "split_rows": {
+      "got": 59,
+      "want": 59,
+      "ok": true
+    }
+  },
+  "ok": true,
+  "mismatches": []
+}
