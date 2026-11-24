@@ -43,6 +43,9 @@ ul.files{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
 ul.files li{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-size:13px}
 code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+p.back{margin:10px 0 0;font-size:13px;color:var(--muted)}
+p.back a{color:var(--accent);text-decoration:none}
+p.back a:hover{text-decoration:underline}
 @media (max-width:760px){.kpis{grid-template-columns:1fr 1fr}ol.steps{grid-template-columns:1fr}h1{font-size:26px}}
 @media (max-width:640px){
 thead{display:none}
@@ -101,6 +104,9 @@ td:empty{display:none}
   <ul class="files"><li><code>gen_osv.py</code></li><li><code>check_osv.py</code></li><li><code>data/osv.csv</code></li><li><code>data/meta.json</code></li><li><code>data/checks.json</code></li><li><code>osv.build.cjs</code></li><li><code>osv.xlsx</code></li></ul>
 
   <footer>Кейс собран на синтетических данных. Персональных данных нет.</footer>
+
+  <p class="back"><a href="../index.html">← Все кейсы</a> · <a href="https://github.com/basovdanil/osv-check">код (osv-check)</a> ·
+  <a href="https://github.com/basovdanil">профиль на GitHub</a></p>
 </div>
 </body>
 </html>
