@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Три кейса на данных и шесть проектов с кодом: ОСВ, вакансии из открытых данных, табличные операции. К каждой цифре — скрипт проверки.">
+<meta name="description" content="Три кейса на данных и восемь проектов с кодом: ОСВ, вакансии из открытых данных, табличные операции. К каждой цифре — скрипт проверки.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Портфолио · Данил Басов">
 <meta property="og:title" content="Три кейса: что сделано и чем проверено">
-<meta property="og:description" content="Три кейса на данных и шесть проектов с кодом: ОСВ, вакансии из открытых данных, табличные операции. К каждой цифре — скрипт проверки.">
+<meta property="og:description" content="Три кейса на данных и восемь проектов с кодом: ОСВ, вакансии из открытых данных, табличные операции. К каждой цифре — скрипт проверки.">
 <meta property="og:url" content="https://basovdanil.github.io/portfolio/index.html">
 <meta name="twitter:card" content="summary">
 <title>Три кейса: что сделано и чем проверено</title>
@@ -50,7 +50,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
 </head>
 <body>
 <div class="wrap">
-  <div class="eyebrow">Портфолио · три кейса и шесть проектов</div>
+  <div class="eyebrow">Портфолио · три кейса и восемь проектов</div>
   <h1>Что сделано и чем это проверено</h1>
   <p class="lead">Три работы на данных. В каждом кейсе есть исходные данные, код и отдельная проверка: если числа
   не сходятся, она возвращает код 4.</p>
@@ -85,9 +85,10 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   </table>
 
   <h2>Проекты с кодом</h2>
-  <p class="sub">Шесть инструментов на GitHub. Четыре — на стандартной библиотеке Python, без установки
-  зависимостей; два — на scikit-learn. К каждому приложены данные и тесты, GitHub Actions прогоняет их
-  на каждый push: у четырёх без зависимостей — на Python 3.9, 3.11 и 3.13, у двух ML — на 3.11 и 3.13.</p>
+  <p class="sub">Восемь инструментов на GitHub, у каждого тег <code>v1.0.0</code>. Шесть — на стандартной
+  библиотеке Python, без установки зависимостей; два — на scikit-learn. К каждому приложены данные и
+  тесты, GitHub Actions прогоняет их на каждый push: у шести без зависимостей — на Python 3.9, 3.11 и
+  3.13, у двух ML — на 3.11 и 3.13.</p>
   <table>
     <thead>
       <tr><th>Проект</th><th>Что делает</th><th style="text-align:right">Тестов</th><th>Код</th></tr>
@@ -134,6 +135,20 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
         ошибок. Логистическая регрессия — AUC 0,8446 ± 0,0132.</td>
         <td class="num" data-label="Тестов">19</td>
         <td data-label="Код"><a href="https://github.com/basovdanil/churn-baseline">репозиторий</a></td>
+      </tr>
+      <tr>
+        <td class="t" data-label="Проект">hh-vacancy-check</td>
+        <td data-label="Что делает">Проверяет, открыта ли вакансия на hh.ru: берёт дедлайн из блока
+        schema.org, а не из текста страницы, где «в архиве» стоит всегда.</td>
+        <td class="num" data-label="Тестов">16</td>
+        <td data-label="Код"><a href="https://github.com/basovdanil/hh-vacancy-check">репозиторий</a></td>
+      </tr>
+      <tr>
+        <td class="t" data-label="Проект">pii-scan</td>
+        <td data-label="Что делает">Ищет почты, телефоны, паспортные пары и СНИЛС в CSV до отправки
+        файла наружу. В отчёте только маски, исходных значений нет.</td>
+        <td class="num" data-label="Тестов">15</td>
+        <td data-label="Код"><a href="https://github.com/basovdanil/pii-scan">репозиторий</a></td>
       </tr>
     </tbody>
   </table>
