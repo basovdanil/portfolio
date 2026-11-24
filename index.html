@@ -43,7 +43,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
 </head>
 <body>
 <div class="wrap">
-  <div class="eyebrow">Портфолио · три кейса</div>
+  <div class="eyebrow">Портфолио · три кейса и шесть проектов</div>
   <h1>Что сделано и чем это проверено</h1>
   <p class="lead">Три работы на данных. В каждом кейсе есть исходные данные, код и отдельная проверка: если числа
   не сходятся, она возвращает код 4.</p>
@@ -77,10 +77,66 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
     </tbody>
   </table>
 
+  <h2>Проекты с кодом</h2>
+  <p class="sub">Шесть инструментов на GitHub. Четыре — на стандартной библиотеке Python, без установки
+  зависимостей; два — на scikit-learn. К каждому приложены данные и тесты, GitHub Actions прогоняет их
+  на каждый push: у четырёх без зависимостей — на Python 3.9, 3.11 и 3.13, у двух ML — на 3.11 и 3.13.</p>
+  <table>
+    <thead>
+      <tr><th>Проект</th><th>Что делает</th><th style="text-align:right">Тестов</th><th>Код</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="t" data-label="Проект">osv-check</td>
+        <td data-label="Что делает">Проверяет оборотно-сальдовую ведомость: пересчитывает строки и итоги, ищет
+        сальдо не на той стороне счёта и отрицательные обороты.</td>
+        <td class="num" data-label="Тестов">13</td>
+        <td data-label="Код"><a href="https://github.com/basovdanil/osv-check">репозиторий</a></td>
+      </tr>
+      <tr>
+        <td class="t" data-label="Проект">table-etl</td>
+        <td data-label="Что делает">Слияние выгрузок, сравнение версий и раскладка по папкам одной командой.
+        В демо 51 строка сходится в 45, 72 — в 60.</td>
+        <td class="num" data-label="Тестов">11</td>
+        <td data-label="Код"><a href="https://github.com/basovdanil/table-etl">репозиторий</a></td>
+      </tr>
+      <tr>
+        <td class="t" data-label="Проект">forecast-baseline</td>
+        <td data-label="Что делает">Бэктест пяти базовых прогнозов на скользящих окнах: наивный, среднее,
+        скользящая средняя, тренд, недельная сезонность. Лучший результат — MAPE 8,81 %.</td>
+        <td class="num" data-label="Тестов">16</td>
+        <td data-label="Код"><a href="https://github.com/basovdanil/forecast-baseline">репозиторий</a></td>
+      </tr>
+      <tr>
+        <td class="t" data-label="Проект">sql-analytics</td>
+        <td data-label="Что делает">Десять SQL-отчётов по таблице продаж: окна, CTE, ABC-анализ, скидки.
+        Самопроверка сверяет 12 разрезов с итогом.</td>
+        <td class="num" data-label="Тестов">19</td>
+        <td data-label="Код"><a href="https://github.com/basovdanil/sql-analytics">репозиторий</a></td>
+      </tr>
+      <tr>
+        <td class="t" data-label="Проект">titanic-baseline</td>
+        <td data-label="Что делает">Кросс-валидация трёх моделей и генератор submission. Случайный лес даёт
+        accuracy 0,8316 ± 0,0120, AUC 0,8827.</td>
+        <td class="num" data-label="Тестов">28</td>
+        <td data-label="Код"><a href="https://github.com/basovdanil/titanic-baseline">репозиторий</a></td>
+      </tr>
+      <tr>
+        <td class="t" data-label="Проект">churn-baseline</td>
+        <td data-label="Что делает">Отток при дисбалансе 26,5 %: кросс-валидация и подбор порога с учётом цены
+        ошибок. Логистическая регрессия — AUC 0,8446 ± 0,0132.</td>
+        <td class="num" data-label="Тестов">19</td>
+        <td data-label="Код"><a href="https://github.com/basovdanil/churn-baseline">репозиторий</a></td>
+      </tr>
+    </tbody>
+  </table>
+
   <h2>Чем проверено</h2>
   <div class="note">
     <p>Каждый кейс заканчивается запуском с кодом возврата. У ОСВ и демо операций это 4 при расхождении,
     у проверки вакансий 4 при найденном контакте или дубле. Числа на страницах взяты из этих прогонов.</p>
+    <p>Тесты шести проектов идут в GitHub Actions на каждый push; последние прогоны зелёные у всех шести.
+    Те же тесты можно запустить локально: <code>python -m unittest discover -s tests</code> в каталоге проекта.</p>
     <p>Книги Excel проверены штатным валидатором: 0 ошибок, 0 предупреждений линтера. Страницы проверены
     статическим чекером и рендером на ширинах 1440 и 390 пикселей, переполнения нет.</p>
   </div>
