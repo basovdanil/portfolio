@@ -31,6 +31,14 @@ a:hover{border-bottom-color:var(--accent)}
 code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px}
 footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 @media (max-width:760px){h1{font-size:26px}}
+@media (max-width:640px){
+  table,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  tr{border:1px solid var(--line);border-radius:10px;margin:0 0 12px;padding:4px 0}
+  td{border:0;padding:6px 14px;text-align:left}
+  td.num{text-align:left}
+  td:before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+}
 </style>
 </head>
 <body>
@@ -47,25 +55,25 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
     </thead>
     <tbody>
       <tr>
-        <td class="t">Проверка ОСВ</td>
-        <td>Дефекты в ведомости находятся по правилам, а не по списку ожиданий: 16 счетов, 5 находок, включая
+        <td class="t" data-label="Кейс">Проверка ОСВ</td>
+        <td data-label="Что доказывает">Дефекты в ведомости находятся по правилам, а не по списку ожиданий: 16 счетов, 5 находок, включая
         красное сальдо на активном счёте и разрыв в итогах.</td>
-        <td class="num"><span class="chip ok">5 из 5</span></td>
-        <td><a href="case-osv/case-osv.html">ОСВ: пять дефектов</a></td>
+        <td class="num" data-label="Проверка"><span class="chip ok">5 из 5</span></td>
+        <td data-label="Страница"><a href="case-osv/case-osv.html">ОСВ: пять дефектов</a></td>
       </tr>
       <tr>
-        <td class="t">Вакансии без контактов</td>
-        <td>Белый список полей задан до запроса: 505 строк, ни одного телефона или адреса почты. Проверка ищет
+        <td class="t" data-label="Кейс">Вакансии без контактов</td>
+        <td data-label="Что доказывает">Белый список полей задан до запроса: 505 строк, ни одного телефона или адреса почты. Проверка ищет
         контакты регуляркой и падает, если найдёт.</td>
-        <td class="num"><span class="chip ok">0 контактов</span></td>
-        <td><a href="case-jobs/case-jobs.html">Вакансии: ноль контактов</a></td>
+        <td class="num" data-label="Проверка"><span class="chip ok">0 контактов</span></td>
+        <td data-label="Страница"><a href="case-jobs/case-jobs.html">Вакансии: ноль контактов</a></td>
       </tr>
       <tr>
-        <td class="t">Три ручные операции</td>
-        <td>Слияние выгрузок, сравнение версий и раскладка по папкам: одна команда вместо мыши, демо сверяет
+        <td class="t" data-label="Кейс">Три ручные операции</td>
+        <td data-label="Что доказывает">Слияние выгрузок, сравнение версий и раскладка по папкам: одна команда вместо мыши, демо сверяет
         девять ожидаемых чисел.</td>
-        <td class="num"><span class="chip ok">9 из 9</span></td>
-        <td><a href="case-tables/case-tables.html">Три операции скриптом</a></td>
+        <td class="num" data-label="Проверка"><span class="chip ok">9 из 9</span></td>
+        <td data-label="Страница"><a href="case-tables/case-tables.html">Три операции скриптом</a></td>
       </tr>
     </tbody>
   </table>
@@ -100,7 +108,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   </div>
 
   <footer>Собрано на синтетических данных и открытых данных trudvsem.ru. Контактов в выгрузках нет; названия
-  работодателей — как в источнике.</footer>
+  работодателей в публикуемые файлы не входят.</footer>
 </div>
 </body>
 </html>
