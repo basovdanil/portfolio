@@ -46,12 +46,11 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
 <div class="wrap">
   <div class="eyebrow">Кейс · открытые данные</div>
   <h1>Вакансии: 505 строк, ноль контактов</h1>
-  <p class="lead">Выборка из открытых данных о вакансиях. Белый список полей задан до первого запроса: контактные
-  колонки, почты и свободные тексты в таблицу не попадают, поэтому контактов в выгрузке нет
-  по устройству конвейера, а не по обещанию.</p>
+  <p class="lead">Выборка из открытых данных о вакансиях. Поля отобраны до первого запроса: контактные колонки, почты
+  и свободные тексты в таблицу не попадают. Поэтому контактов в выгрузке нет по устройству конвейера.</p>
   <div class="chips">
     <span class="chip n">источник: <a href="https://trudvsem.ru/opendata">trudvsem.ru/opendata</a></span>
-    <span class="chip n">публикации 2022-01-27 — 2026-11-23</span>
+    <span class="chip n">публикации с 27.01.2022 по 23.11.2026</span>
     <span class="chip n">данные открыты для использования</span>
   </div>
 
@@ -65,7 +64,7 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   </table>
 
   <h2>Регионы</h2>
-  <p class="sub">Топ-10 по числу вакансий. «Доля без зарплаты» — сколько карточек не указывают вилку.</p>
+  <p class="sub">Топ-10 по числу вакансий. «Доля без зарплаты»: сколько карточек не указывают вилку.</p>
   <table>
     <thead><tr><th>Регион</th><th style="text-align:right">Вакансий</th><th style="text-align:right">Медиана, ₽</th>
     <th style="text-align:right">Без зарплаты</th></tr></thead>
@@ -73,14 +72,14 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
   </table>
 
   <h2>Специальности</h2>
-  <p class="sub">Категория из карточки вакансии, а не пересказ названия.</p>
+  <p class="sub">Категория берётся из карточки вакансии.</p>
   <table>
     <thead><tr><th>Специальность</th><th style="text-align:right">Вакансий</th><th style="text-align:right">Медиана, ₽</th></tr></thead>
     <tbody><tr><td class="t">Информационные технологии, телекоммуникации, связь</td><td class="n num">110</td><td class="n num">80 000</td></tr><tr><td class="t">Бухгалтерия, налоги, управленческий учет</td><td class="n num">62</td><td class="n num">53 186</td></tr><tr><td class="t">Производство</td><td class="n num">57</td><td class="n num">80 000</td></tr><tr><td class="t">Продажи, закупки, снабжение, торговля</td><td class="n num">54</td><td class="n num">61 994</td></tr><tr><td class="t">Строительство, ремонт, стройматериалы, недвижимость</td><td class="n num">22</td><td class="n num">80 000</td></tr><tr><td class="t">Транспорт, автобизнес, логистика, склад, ВЭД</td><td class="n num">22</td><td class="n num">53 575</td></tr><tr><td class="t">Пищевая промышленность</td><td class="n num">15</td><td class="n num">69 800</td></tr><tr><td class="t">Государственная служба, некоммерческие организации</td><td class="n num">14</td><td class="n num">47 407</td></tr></tbody>
   </table>
 
   <h2>Как это проверено</h2>
-  <p class="sub">Отдельный скрипт, который не участвовал в сборе. При нарушении — выход с кодом 4.</p>
+  <p class="sub">Отдельный скрипт, который не участвовал в сборе. При нарушении он выходит с кодом 4.</p>
   <table>
     <thead><tr><th>Что проверялось</th><th style="text-align:right">Факт</th><th style="text-align:right">Статус</th></tr></thead>
     <tbody><tr><td class="t">Строк и уникальных id</td><td class="n num">505 / 505</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Адресов почты в таблице</td><td class="n num">0</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Телефонов в текстовых полях</td><td class="n num">0</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Сумма по регионам равна числу строк</td><td class="n num">505 / 505</td><td class="n"><span class="chip ok">норма</span></td></tr><tr><td class="t">Колонок с контактами</td><td class="n num">0</td><td class="n"><span class="chip ok">норма</span></td></tr></tbody>
@@ -88,20 +87,19 @@ footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-si
 
   <h2>Границы</h2>
   <div class="note">
-    <p>Выборка неполная: это шесть запросов по сто строк, а не вся база. Самая крупная из тем дала
-    Город Москва — 77 вакансий, значит по стране картина шире и считать её «рынком труда» нельзя.</p>
-    <p>Медиана построена по указанным вилкам, а не по фактическим выплатам: 4 карточек вилку
-    не указывают вовсе, и они выпадают из расчёта.</p>
-    <p>Среди работодателей 23 — индивидуальные предприниматели: в названии может стоять фамилия. Поэтому
-    ни страница, ни файлы кейса не содержат списка работодателей: в таблице и книге этой колонки нет.</p>
-    <p>Книга собрана без Excel: формулы записаны, но не пересчитаны движком. Числа сверены скриптом с исходным CSV.</p>
+    <p>Выборка неполная: шесть запросов по сто строк, не вся база. Больше всего дал Город Москва, 77 вакансий,
+    поэтому по стране картина шире и считать выборку «рынком труда» нельзя.</p>
+    <p>Медиана построена по указанным вилкам. Четыре карточки вилку не указывают и в расчёт не входят.</p>
+    <p>Среди работодателей 23 индивидуальных предпринимателя: в названии может стоять фамилия. Поэтому списка
+    работодателей нет ни на странице, ни в файлах кейса.</p>
+    <p>Книга собрана без Excel. Формулы записаны, но движок их не пересчитывал. Числа сверены скриптом с исходным CSV.</p>
   </div>
 
   <h2>Файлы кейса</h2>
   <ul class="files"><li><code>fetch_jobs.py</code></li><li><code>stats_jobs.py</code></li><li><code>check_jobs.py</code></li><li><code>data/jobs.csv</code></li><li><code>data/by_region.csv</code></li><li><code>data/by_specialisation.csv</code></li><li><code>data/summary.json</code></li><li><code>data/checks.json</code></li><li><code>jobs.build.cjs</code></li><li><code>jobs.xlsx</code></li></ul>
 
-  <footer>Источник данных — <a href="https://trudvsem.ru/opendata">открытые данные trudvsem.ru</a>.
-  Контактные данные не собирались; названия работодателей в публикуемые файлы не входят.</footer>
+  <footer>Источник данных: <a href="https://trudvsem.ru/opendata">открытые данные trudvsem.ru</a>.
+  Контактные данные не собирались, названия работодателей в публикуемые файлы не входят.</footer>
 </div>
 </body>
 </html>
