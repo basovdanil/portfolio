@@ -1,0 +1,26 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: ОСВ: сверка с ожидаемым набором
+        working-directory: case-osv
+        run: python check_osv.py
+      - name: Вакансии: контакты, дубли, разрезы
+        working-directory: case-jobs
+        run: python check_jobs.py
+      - name: Операции: девять сверок демо
+        working-directory: case-tables
+        run: python demo.py

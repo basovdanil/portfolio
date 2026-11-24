@@ -1,5 +1,7 @@
 # portfolio
 
+[![checks](https://github.com/basovdanil/portfolio/actions/workflows/checks.yml/badge.svg)](https://github.com/basovdanil/portfolio/actions/workflows/checks.yml)
+
 Три разобранных кейса с кодом, данными и проверкой: https://basovdanil.github.io/portfolio/
 
 Каждая страница — статический HTML, данные и скрипты лежат рядом, поэтому любую
@@ -28,6 +30,9 @@ cd case-tables && python demo.py           # 0 — все сверки сошл�
 
 Коды возврата у всех проверок одинаковые: `0` — всё сошлось, `2` — аргументы,
 `3` — нет входных файлов, `4` — найдено расхождение.
+
+Те же три команды запускаются в GitHub Actions на каждый push — Python 3.9, 3.11
+и 3.13; бейдж в шапке показывает последний прогон.
 
 Что именно проверяет каждый скрипт:
 
